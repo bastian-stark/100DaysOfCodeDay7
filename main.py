@@ -1,12 +1,16 @@
+#Hangman App
+
 import random
 
 def initialize_board(word):
+    """Create an empty game board"""
     board = ''
     for n in range(0, len(word)):
         board += '_'
     return board
 
 def check_letter(word, userGuess):
+    """Check for letter in word"""
     status = 0
     for char in word:
         if userGuess == char:
@@ -14,6 +18,7 @@ def check_letter(word, userGuess):
     return status
 
 def updateBoard(board, word, letter):
+    """Update the board with any found letters"""
     boardList = []
     for x in board:
         boardList.append(x)
@@ -26,6 +31,7 @@ def updateBoard(board, word, letter):
     return board
 
 def checkStatus(board):
+    """Check if all letters have been found yet"""
     charsRevealed = 0
     for j in range(0, len(board)):
         if board[j] != '_':
@@ -35,16 +41,16 @@ def checkStatus(board):
     else:
         return 0
 
-
-word_list = ["city", "tree", "computer", "phone", "dog"]
-
+#Intro
 print('Welcome to Hangman')
-
+word_list = ["city", "tree", "computer", "phone", "dog"]
+#Choose word
 word = random.choice(word_list)
 board = initialize_board(word)
 
 gameStatus = 0
 lives = 3
+#Begin game
 while gameStatus != 1 and lives > 0:
     print(board)
     userGuess = input('Guess a letter: ').lower()
